@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChangedLyricstoArray), name: UITextView.textDidChangeNotification, object: nil)
         // Insert music
         arrOfMusic = MusicFeeder.init().arrOfMusic
         
@@ -71,6 +71,10 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 5) {
             blurEffectView.effect = blurEffect
         }
+    }
+    
+    @objc func updateChangedLyricstoArray() {
+        arrOfMusic[currMusic].lyrics = lyricsTextView.text
     }
     
     @IBAction func pressNext(_ sender: Any) {
