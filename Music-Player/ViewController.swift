@@ -34,11 +34,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var playMusicBtn: UIButton!
     @IBOutlet weak var nextMusicBtn: UIButton!
     @IBOutlet weak var resetFavesBtn: UIButton!
+    @IBOutlet weak var subsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChangedLyricstoArray), name: UITextView.textDidChangeNotification, object: nil)
         // Insert music
         arrOfMusic = MusicFeeder.init().arrOfMusic
         
@@ -62,6 +63,8 @@ class ViewController: UIViewController {
             favMusicBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         
+        subsButton.setTitle("Subs & Like!", for: .normal)
+        
         // To blur background (put this on your ViewController's viewDidLoad())
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView()
@@ -71,6 +74,10 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 5) {
             blurEffectView.effect = blurEffect
         }
+    }
+    
+    @objc func updateChangedLyricstoArray() {
+        arrOfMusic[currMusic].lyrics = lyricsTextView.text
     }
     
     @IBAction func pressNext(_ sender: Any) {
@@ -98,7 +105,7 @@ class ViewController: UIViewController {
     @IBAction func pressPlay(_ sender: Any) {
         
         musicDurationSlider.setValue(3, animated: true)
-        timeLeftLbl.text = "03.00"
+        timeLeftLbl.text = "05.00"
         
         if !currState {
             playMusicBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
