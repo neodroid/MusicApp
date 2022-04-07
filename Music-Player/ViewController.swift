@@ -34,6 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playMusicBtn: UIButton!
     @IBOutlet weak var nextMusicBtn: UIButton!
     @IBOutlet weak var resetFavesBtn: UIButton!
+    @IBOutlet weak var subsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,8 @@ class ViewController: UIViewController {
         if arrOfMusic[0].isFavorite! {
             favMusicBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
+        
+        subsButton.setTitle("Subs & Like!", for: .normal)
         
         // To blur background (put this on your ViewController's viewDidLoad())
         let blurEffect = UIBlurEffect(style: .light)
