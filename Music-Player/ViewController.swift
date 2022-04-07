@@ -93,7 +93,7 @@ class ViewController: UIViewController {
     @IBAction func pressPlay(_ sender: Any) {
         
         musicDurationSlider.setValue(3, animated: true)
-        timeLeftLbl.text = "03.00"
+        timeLeftLbl.text = "05.00"
         
         if !currState {
             playMusicBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
