@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChangedLyricstoArray), name: UITextView.textDidChangeNotification, object: nil)
         // Insert music
         arrOfMusic = MusicFeeder.init().arrOfMusic
         
@@ -62,6 +62,10 @@ class ViewController: UIViewController {
             favMusicBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         
+    }
+    
+    @objc func updateChangedLyricstoArray() {
+        arrOfMusic[currMusic].lyrics = lyricsTextView.text
     }
     
     @IBAction func pressNext(_ sender: Any) {
